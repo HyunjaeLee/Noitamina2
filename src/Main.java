@@ -35,6 +35,10 @@ public class Main {
                                 System.out.print("Search: ");
                                 str = sc.nextLine();
                                 Map<String, String> map = Anigod.search(str);
+                                if(map.isEmpty()) {
+                                    System.out.println("No Result");
+                                    break;
+                                }
                                 List<String> keys = new ArrayList<>(map.keySet());
                                 List<String> values = new ArrayList<>(map.values());
                                 keys.forEach(key -> System.out.printf("%d %s\n", keys.indexOf(key), key));
@@ -78,6 +82,10 @@ public class Main {
                                 System.out.print("Search: ");
                                 str = sc.nextLine();
                                 Map<String, String> map = Anitoday.search(str);
+                                if(map.isEmpty()) {
+                                    System.out.println("No Result");
+                                    break;
+                                }
                                 List<String> keys = new ArrayList<>(map.keySet());
                                 List<String> values = new ArrayList<>(map.values());
                                 keys.forEach(key -> System.out.printf("%d %s\n", keys.indexOf(key), key));
