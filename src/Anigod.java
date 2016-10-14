@@ -5,9 +5,9 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -65,7 +65,7 @@ public class Anigod {
 
         // Main
         Document doc = connect("https://anigod.com/");
-        Map<String, String> map = new HashMap<>();
+        Map<String, String> map = new TreeMap<>();
         Elements elements = doc.select(".index-link");
         elements.forEach(element -> map.put(element.text(), element.attr("abs:href")));
 

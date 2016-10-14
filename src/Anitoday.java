@@ -4,9 +4,9 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class Anitoday {
 
@@ -48,10 +48,23 @@ public class Anitoday {
 
     }
 
+    public static Map<String, String> search(String keyword) {
+
+        Map<String, String> map = new TreeMap<>();
+        Map<String, String> all = all();
+        all.keySet().forEach(key -> {
+            if(key.contains(keyword)){
+                map.put(key, all.get(key));
+            }
+        });
+        return map;
+
+    }
+
     public static Map<String, String> all() {
 
         Document doc = connect("http://ani.today/");
-        Map<String, String> map = new HashMap<>();
+        Map<String, String> map = new TreeMap<>();
         Elements elements = doc.select("div.category a[href~=list/\\d{2,}]");
         elements.forEach(element -> map.put(element.text(), element.attr("abs:href")));
         return map;
